@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dbke.mapper.groupEval.EvalCheckItemMapper">
+    <resultMap id="BaseResultMap" type="edu.dbke.model.groupEval.EvalCheckItem">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="score" jdbcType="REAL" property="score"/>
+        <result column="parent_item_id" jdbcType="INTEGER" property="parentItemId"/>
+        <result column="group_eval_question_id" jdbcType="INTEGER" property="groupEvalQuestionId"/>
+    </resultMap>
+    <!-- 查询某个小组该子检查项的所有人得评分-->
+    <select id="getChildItemQuery"  resultType="float">
+        select eci.id,esi.score from eval_group eg,eval_check_item eci,eval_score_item esi,eval_check_item eci_p,eval_comment ec where
+        eci.parent_item_id is not null
+        and eci.id=esi.eval_check_item_id
+        and ec.eval_group_id=eg.id
+        and eci_p.id=eci.parent_item_id
+        and esi.eval_comment_id=ec.id
+        and eci_p.group_eval_question_id = #{group_eval_question_id}
+        and eci.id=#{id}
+        and eg.id=#{id};
+    </select>
+
+    <!-- 得到某个小组该子检查项的平均得分-->
+    <select id="getChildItemAvgScore" resultType="float">
+        select eci.id,ROUND(avg(esi.score),2) from eval_group eg,eval_check_item eci,eval_score_item esi,eval_check_item eci_p,eval_comment ec where
+        eci.parent_item_id is not null
+        and eci.id=esi.eval_check_item_id
+        and ec.eval_group_id=eg.id
+        and eci_p.id=eci.parent_item_id
+        and esi.eval_comment_id=ec.id
+        and eci_p.group_eval_question_id = #{group_eval_question_id}
+        and eci.id=#{id}
+        and eg.id=#{id}
+        group by eci.id;
+    </select>
+
+    <!-- 得到某个组在某次评测的平均总得分-->
+    <select id="getParentItemAvgScore" resultType="float">
+        select eci.id,ROUND(avg(esi.score),2) from
+        eval_group eg,eval_check_item eci,eval_score_item esi,eval_check_item eci_p,eval_comment ec where
+        eci.parent_item_id is not null
+        and eci.id=esi.eval_check_item_id
+        and ec.eval_group_id=eg.id
+        and eci_p.id=eci.parent_item_id
+        and esi.eval_comment_id=ec.id
+        and eci_p.group_eval_question_id = #{group_eval_question_id}
+        and eci_p.id=#{id}
+        and eg.id=#{id}
+        group by eci.id;
+
+    </select>
+    <!-- 得到某个组在某次评测的平均总得分-->
+    <select id="getTotalScore" resultType="float">
+        select eci.id,ROUND(avg(esi.score),2) from
+        eval_group eg,eval_check_item eci,eval_score_item esi,eval_check_item eci_p,eval_comment ec where
+        eci.parent_item_id is not null
+        and eci.id=esi.eval_check_item_id
+        and ec.eval_group_id=eg.id
+        and eci_p.id=eci.parent_item_id
+        and esi.eval_comment_id=ec.id
+        and eci_p.group_eval_question_id = #{group_eval_question_id}
+        and eg.id=#{id}
+        group by eci.id;
+
+    </select>
+
+</mapper>

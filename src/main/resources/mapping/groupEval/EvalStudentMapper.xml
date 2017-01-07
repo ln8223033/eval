@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dbke.mapper.groupEval.EvalStudentMapper">
+  <resultMap id="BaseResultMap" type="edu.dbke.model.groupEval.EvalStudent">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="eval_group_id" jdbcType="INTEGER" property="evalGroupId" />
+    <result column="is_leader" jdbcType="BIT" property="isLeader" />
+  </resultMap>
+</mapper>

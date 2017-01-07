@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.dbke.mapper.system.GroupMapper">
+
+
+	<select id="findNodeById" parameterType="string"  resultType="Group">
+		select  *  from t_group where 
+		<if test="id == null">
+			group_id is null
+		</if>
+		<if test="id != null">
+			id = #{id}
+		</if>
+	</select>
+
+	<!--查出数据过多。待优化  -->
+	<select id="findNodeByParentId" parameterType="string"  resultType="Group">
+		select  *  from t_group where group_id = #{ parentId }
+	</select>
+	
+	
+	<select id="getChildNodeCount" parameterType="string"  resultType="int">
+		select  count(*)  from t_group where group_id  = #{id}
+	</select>
+	
+	<select id="selectByExample" parameterType="Group"  resultType="Group">
+			select  *  from t_group where group_id is null 
+			
+			
+			<!-- <if test="applicationSystemId  != null">
+					and applicationSystemId = #{applicationSystemId}
+			</if>
+			<if test="business_id  != null">
+					and business_id = #{business_id}
+			</if>
+			<if test="organization_id  != null">
+					and organization_id = #{organization_id}
+			</if> -->
+			
+			
+			
+			<if test="business_id  != null">
+				and business_id = #{business_id}
+			</if>
+			<if test="business_id  == null">
+				<if test="organization_id  != null">
+					 	and organization_id = #{organization_id}
+				</if>
+				<if test="applicationSystemId  != null">
+						and applicationSystemId = #{applicationSystemId}
+				</if> 
+				<if test="organization_id  == null">
+					<if test="applicationSystemId  != null">
+					 	and applicationSystemId = #{applicationSystemId}
+					</if>
+				</if> 
+			</if>	 
+	</select>
+	
+</mapper>

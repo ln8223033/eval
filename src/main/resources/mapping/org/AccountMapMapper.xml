@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--接口定义方法的实现  -->
+<mapper namespace="edu.dbke.mapper.org.AccountMapMapper">
+
+	<select id="findById" parameterType="string" resultType="AccountMap">
+		<!--表里面仅2个字段  -->
+		select * from t_accountmap where externalAccount = #{externalAccount}
+	</select>
+	
+	<!--findByExternalName  -->
+	<select id="findByExternalName"  parameterType="string"  resultType="AccountMap">
+			select * from t_accountmap where  externalAccount = #{externalAccount}
+	</select>
+	
+	<select id="querySingle"  parameterType="string"  resultType="AccountMap">
+			select * from t_accountmap where externalAccount = #{name}
+	</select>
+	
+	<insert id="create"  parameterType="AccountMap">
+		insert into t_accountmap(id, internalAccount, externalAccount) values(#{id}, #{internalAccount}, #{externalAccount})
+	</insert>
+</mapper>

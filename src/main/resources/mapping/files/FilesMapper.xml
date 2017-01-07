@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dbke.mapper.files.FilesMapper">
+  <resultMap id="BaseResultMap" type="edu.dbke.model.files.Files">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="uploadTime" jdbcType="DATE" property="uploadTime" />
+    <result column="fileSize" jdbcType="VARCHAR" property="fileSize" />
+    <result column="contentType" jdbcType="VARCHAR" property="contentType" />
+    <result column="uploadExt" jdbcType="VARCHAR" property="uploadExt" />
+    <result column="savePath" jdbcType="VARCHAR" property="savePath" />
+  </resultMap>
+</mapper>

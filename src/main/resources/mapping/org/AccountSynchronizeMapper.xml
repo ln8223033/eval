@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--接口定义方法的实现  -->
+<mapper namespace="edu.dbke.mapper.org.AccountSynchronizeMapper">
+		<select id="getLastTime"  parameterType="string"  resultType="AccountSynchronize">
+				select * from t_accountsynchronizetimerecord  where id = #{id}
+		</select>
+		
+		<update id="edit"  parameterType="AccountSynchronize">
+				update t_accountsynchronizetimerecord set updateSuccessTime = #{updateSuccessTime}  where id = #{id}
+		</update>
+</mapper>

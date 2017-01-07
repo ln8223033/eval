@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.dbke.mapper.system.BusinessMapper">
+	<select id="selectByOrgId" parameterType="string"  resultType="Business">
+		select businessId, businessName from v_businessorgsystem where orgId = #{ orgId }
+	</select>
+	
+	<select id="selectByBusinessId" parameterType="string"  resultType="Business">
+		select businessId, businessName from v_businessorgsystem where businessId = #{ businessId }
+	</select>
+	
+	<select id="selectByExample" parameterType="Business"  resultType="Business">
+		select businessId, businessName from v_businessorgsystem  where  appSystemId = #{appSystemId}
+	</select>
+	
+</mapper>
