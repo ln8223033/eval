@@ -1,20 +1,20 @@
 package edu.dbke.model.basic;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * 学校
+ * 校区
  * Created by hp on 2016/12/15.
  */
-@Table(name = "t_school")
-public class School {
+
+@Table(name = "t_schoolcampus")
+public class SchoolCampus {
     @Id
+    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;//学校名字
+    @Column(name = "Name")
+    private String name;//校区名字
 
     public Integer getId() {
         return id;

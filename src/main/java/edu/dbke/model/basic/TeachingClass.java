@@ -1,9 +1,6 @@
 package edu.dbke.model.basic;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 
 ;
@@ -15,25 +12,25 @@ import java.util.Date;
 @Table(name = "t_jx_class")
 public class TeachingClass {
     @Id
+    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static Integer END = 1;
+    @Column(name = "Name")
     private String name;// 教学班级名字
-    @DateTimeFormat
+
     private Date beginDate;// 开课时间
     private Date endDate;// 结课时间
-    private  Integer status = 0;//是否结课，默认没有结课
+
     private String memo;//备注
-    @ManyToOne
-    @JoinColumn(name = "departmentId")
+
+    @Column(name = "DeptId")
     private Department department;// 挂靠学院
 
-    @ManyToOne
-    @JoinColumn(name = "courseId")
-    private Course course;// 所属课程
+    @Column(name = "SemesterPlanDetailId")
+    private SemesterPlanDetail semesterPlanDetail;// 所属课程
 
-    @ManyToOne
-    @JoinColumn(name = "teacherId")
+
+    @Column(name = "TeacherId")
     private Teacher teacher;//任课老师
 
     public Integer getId() {
@@ -50,30 +47,6 @@ public class TeachingClass {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
     }
 
     public Date getBeginDate() {
@@ -100,14 +73,27 @@ public class TeachingClass {
         this.memo = memo;
     }
 
-    public int getStatus() {
-        Date date = Calendar.getInstance().getTime();
-        if(endDate.getTime()<date.getTime()){   //已经结课
-            return status = END;
-        }
-        return status;
+    public Department getDepartment() {
+        return department;
     }
-    public void setStatus(Integer status) {
-        this.status = status;
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public SemesterPlanDetail getSemesterPlanDetail() {
+        return semesterPlanDetail;
+    }
+
+    public void setSemesterPlanDetail(SemesterPlanDetail semesterPlanDetail) {
+        this.semesterPlanDetail = semesterPlanDetail;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

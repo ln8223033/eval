@@ -9,18 +9,18 @@ import javax.persistence.*;
 @Table(name="t_class")
 public class Classes  {
     @Id
+    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "Name")
     private String name;//班级名称
+    @Column(name = "Grade")
     private int grade;//年级
 
-
-    @ManyToOne
-    @JoinColumn(name = "departmentId")
+    @Column(name = "DepartmentId")
     private Department department;//所属学院
 
-    @ManyToOne
-    @JoinColumn(name = "professionId")
+    @Column(name = "ProfessionId")
     private Profession profession;//专业
 
     public Integer getId() {
@@ -46,8 +46,6 @@ public class Classes  {
     public void setGrade(int grade) {
         this.grade = grade;
     }
-
-
 
     public Department getDepartment() {
         return department;

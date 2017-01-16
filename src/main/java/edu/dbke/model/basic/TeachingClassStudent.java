@@ -9,21 +9,16 @@ import javax.persistence.*;
 @Table(name = "t_jx_class_student")
 public class TeachingClassStudent {
     @Id
+    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static Integer NORMAL = 1;//正常状态
-    public static Integer DELETED = 2;//已删除
-    public static Integer LEAVE = 3;//请假
 
 
-    private Integer status;//学生的状态
+    @Column(name = "StudentId")
+    private Student student;//学生ID
 
-    @ManyToOne
-    @JoinColumn(name = "studentId", nullable = false)
-    private Student student;
-
-    @JoinColumn(name = "teachingClassId")
-    private TeachingClass teachingClass;
+    @Column(name = "TeachingClassId")
+    private TeachingClass teachingClass;//教学班ID
 
     public Integer getId() {
         return id;
@@ -31,14 +26,6 @@ public class TeachingClassStudent {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Student getStudent() {

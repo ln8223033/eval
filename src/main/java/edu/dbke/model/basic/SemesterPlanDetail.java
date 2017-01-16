@@ -3,20 +3,20 @@ package edu.dbke.model.basic;
 import javax.persistence.*;
 
 /**
- * 专业
- * Created by hp on 2016/12/15.
+ * 课程
+ * Created by hp on 2017/1/16.
  */
-@Table(name = "t_profession")
-public class Profession {
+@Table(name = "t_tts_semester_execution_plan_detail")
+public class SemesterPlanDetail {
     @Id
     @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "Name")
-    private String name;//中文专业名称
-    @ManyToOne
-    @Column(name = "DeptId")
-    private Department department;
+
+    @Column(name = "SyllabusId")
+    private Syllabus syllabus;//大纲ID
+    @Column(name = "InChargeOfDeptId")
+    private Department department;//课程负责学院ID
 
     public Integer getId() {
         return id;
@@ -26,12 +26,12 @@ public class Profession {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Syllabus getSyllabus() {
+        return syllabus;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSyllabus(Syllabus syllabus) {
+        this.syllabus = syllabus;
     }
 
     public Department getDepartment() {

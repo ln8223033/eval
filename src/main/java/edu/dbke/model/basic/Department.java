@@ -9,12 +9,13 @@ import javax.persistence.*;
 @Table(name = "t_department")
 public class Department {
     @Id
+    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;//学院名称
-    @ManyToOne
-    @JoinColumn(name = "schoolId")
-    private School school;//所属学校
+
+    @Column(name = "SchoolCampusId")
+    private SchoolCampus schoolCampus;//校区ID
 
     public Integer getId() {
         return id;
@@ -32,11 +33,11 @@ public class Department {
         this.name = name;
     }
 
-    public School getSchool() {
-        return school;
+    public SchoolCampus getSchoolCampus() {
+        return schoolCampus;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setSchoolCampus(SchoolCampus schoolCampus) {
+        this.schoolCampus = schoolCampus;
     }
 }

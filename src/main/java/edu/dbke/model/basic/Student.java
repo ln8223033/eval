@@ -1,37 +1,34 @@
 package edu.dbke.model.basic;
 
-import edu.dbke.model.files.Files;
-import edu.dbke.model.org.User;
-
 import javax.persistence.*;
-import java.util.Date;
 
 
 /**
+ * 学生
  * Created by hp on 2016/12/10.
  */
 
 
 @Table(name = "t_student")
-public class Student  extends User{
-    @Column(unique = true)
+public class Student  {
+    @Id
+    @Column(name = "Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "StudentNo")
     private String studentNo;//学号
+    @Column(name = "Name")
     private String name;//学生姓名
-    private String sex;//性别
-    private Date birthday;//生日
-    private Files photo;//学生头像
-    private String phoneNumber;//手机号码
-    private String email;//邮箱
-    private String homeAddress;//家庭住址
+    @Column(name = "CurrentClassId")
+    private Classes currentClass;//所在班级
 
+    public Integer getId() {
+        return id;
+    }
 
-    @Transient
-    private TeachingClass curTeachingClass;//当前所选课程
-
-    @ManyToOne
-    @JoinColumn(name = "classesId", nullable = false)
-    private Classes classes;
-
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getStudentNo() {
         return studentNo;
@@ -41,7 +38,6 @@ public class Student  extends User{
         this.studentNo = studentNo;
     }
 
-
     public String getName() {
         return name;
     }
@@ -50,70 +46,12 @@ public class Student  extends User{
         this.name = name;
     }
 
-    public String getSex() {
-        return sex;
+    public Classes getCurrentClass() {
+        return currentClass;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Files getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Files photo) {
-        if (photo != null) {
-            this.photo.getSavePath();
-        }
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    public TeachingClass getCurTeachingClass() {
-        return curTeachingClass;
-    }
-
-    public void setCurTeachingClass(TeachingClass curTeachingClass) {
-        this.curTeachingClass = curTeachingClass;
-    }
-
-    public Classes getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Classes classes) {
-        this.classes = classes;
+    public void setCurrentClass(Classes currentClass) {
+        this.currentClass = currentClass;
     }
 }
 
