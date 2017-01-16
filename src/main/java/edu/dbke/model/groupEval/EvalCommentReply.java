@@ -19,21 +19,21 @@ public class EvalCommentReply  implements Comparable<EvalCommentReply>{
     @Column(name = "reply_time")
     private Date replyTime ; //回复的时间
 
-    @ManyToOne
-    @JoinColumn(name = "eval_comment_id")
+
+    @Column(name = "eval_comment_id")
     private EvalComment evalComment;//对那个评论进行回复
 
-    @ManyToOne
-    @JoinColumn(name = "comment_reply_id")
+
+    @Column(name = "comment_reply_id")
     private EvalCommentReply commentReply;//对那个回复进行回复
 
-    @ManyToOne
-    @JoinColumn(name = "replyer_id")
+
+    @Column(name = "replyer_id")
     private User replyer;//回复者
 
     @Column(name = "reply_detail")
     private String replyDetail;//回复详情
-    @OneToMany(mappedBy = "commentReply")
+
     private List<EvalCommentReply> evalCommentReplies = new ArrayList<EvalCommentReply>();
 
     public Integer getId() {

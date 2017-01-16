@@ -1,8 +1,8 @@
 package edu.dbke.service.groupEval;
 
-import com.alibaba.dubbo.config.annotation.Service;
-import edu.dbke.mapper.groupEval.EvalCommentMapper;
 
+import edu.dbke.mapper.groupEval.EvalCommentMapper;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 

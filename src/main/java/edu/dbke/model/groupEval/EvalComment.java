@@ -18,11 +18,11 @@ public class EvalComment {
     private double score;//总分
     @Column(name = "comment_time")
     private Date commentTime;//评论时间
-    @ManyToOne
-    @JoinColumn(name = "eval_group_id")
+
+    @Column(name = "eval_group_id")
     private EvalGroup evalGroup = new EvalGroup();//被评论组
-    @ManyToOne
-    @JoinColumn(name = "commenter_id")
+
+    @Column(name = "commenter_id")
     private User commenter;//评论的人
 
     public Integer getId() {

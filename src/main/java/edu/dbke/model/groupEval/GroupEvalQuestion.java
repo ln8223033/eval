@@ -2,7 +2,7 @@ package edu.dbke.model.groupEval;
 
 
 
-import edu.dbke.model.basic.Course;
+import edu.dbke.model.basic.CourseGroup;
 import edu.dbke.model.basic.Teacher;
 
 import javax.persistence.*;
@@ -26,31 +26,29 @@ public class GroupEvalQuestion  {
     private String title;//题目的名字
     @Column(name = "title_detail")
     private String titleDetail;//题目的详细内容
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+
+    @Column(name = "owner_id", nullable = false)
     private Teacher owner;//出题人
     @Column(name = "create_time")
     private Date createTime;//出题时间
     @Column(name = "is_share")
     private int isShare;//是否共享
-    @ManyToOne
-    @JoinColumn(name = "course_id")
-    private Course course;//对应的课程
+
+    @Column(name = "course_group_id")
+    private CourseGroup courseGroup;//对应的课程
     private int status = 0;//题目状态（删除，未删除）
 
-    @OneToMany(mappedBy = "evalQuestion", cascade = { CascadeType.ALL })
     private List<EvalCheckItem> evalCheckItems = new ArrayList<EvalCheckItem>();//该题下的得分项
 
-    @OneToMany(mappedBy = "evalQuestion")
     private List<EvalAttachment> attachment = new ArrayList<EvalAttachment>();//附件
 
     //版本控制
-    @ManyToOne
-    @JoinColumn(name = "previous_question_id")
+
+    @Column(name = "previous_question_id")
     private GroupEvalQuestion previousQuestion;//此题的上一个版本
 
-    @ManyToOne
-    @JoinColumn(name = "root_question_id")
+
+    @Column(name = "root_question_id")
     private GroupEvalQuestion rootQuestion;//根题目，此题的最原始版本
 
     public Integer getId() {
@@ -108,12 +106,12 @@ public class GroupEvalQuestion  {
         this.isShare = isShare;
     }
 
-    public Course getCourse() {
-        return course;
+    public CourseGroup getCourseGroup() {
+        return courseGroup;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setCourseGroup(CourseGroup courseGroup) {
+        this.courseGroup = courseGroup;
     }
 
     public int getStatus() {

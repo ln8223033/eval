@@ -3,8 +3,8 @@
 <mapper namespace="edu.dbke.mapper.basic.DepartmentMapper">
   <resultMap id="BaseResultMap" type="edu.dbke.model.basic.Department">
 
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="schoolId" jdbcType="INTEGER" property="schoolId" />
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="VARCHAR" property="name" />
+    <result column="SchoolCampusId" jdbcType="INTEGER" property="schoolCampus" />
   </resultMap>
 </mapper>

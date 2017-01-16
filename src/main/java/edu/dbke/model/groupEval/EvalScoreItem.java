@@ -11,12 +11,12 @@ public class EvalScoreItem  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "eval_check_item_id")
+
+    @Column(name = "eval_check_item_id")
     private EvalCheckItem evalCheckItem;//被打分项
 
-    @ManyToOne
-    @JoinColumn(name = "eval_comment_id")
+
+    @Column(name = "eval_comment_id")
     private EvalComment evalComment;//所属评论
 
     private Double score;//得分

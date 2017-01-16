@@ -1,11 +1,11 @@
 package edu.dbke.service.groupEval;
 
-import com.alibaba.dubbo.config.annotation.Service;
 
 import edu.dbke.mapper.groupEval.GroupEvalQuestionMapper;
 import edu.dbke.model.groupEval.GroupEval;
 import edu.dbke.model.groupEval.GroupEvalQuestion;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
@@ -26,7 +26,7 @@ public class GroupEvalQuestionService {
     public List<GroupEvalQuestion> selectAllPrivate(GroupEvalQuestion ge){
         Example example = new Example(GroupEvalQuestion.class);
         example.createCriteria()
-                .andCondition("course_Id =",ge.getCourse())
+                .andCondition("course_Id =",ge.getCourseGroup())
                 .andCondition("owner_Id=",ge.getOwner())
                 .andCondition("status=0")
                 .andCondition("is_share=0");
@@ -36,7 +36,7 @@ public class GroupEvalQuestionService {
     public List<GroupEvalQuestion> selectAllPublic(GroupEvalQuestion ge){
         Example example = new Example(GroupEvalQuestion.class);
         example.createCriteria()
-                .andCondition("course_Id =",ge.getCourse())
+                .andCondition("course_Id =",ge.getCourseGroup())
                 .andCondition("owner_Id=",ge.getOwner())
                 .andCondition("status=0")
                 .andCondition("is_share=1");

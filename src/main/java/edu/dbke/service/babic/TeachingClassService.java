@@ -1,8 +1,9 @@
 package edu.dbke.service.babic;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
 import edu.dbke.mapper.basic.TeachingClassMapper;
 import edu.dbke.model.basic.TeachingClass;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 

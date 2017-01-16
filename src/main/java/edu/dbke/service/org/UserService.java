@@ -1,11 +1,11 @@
 package edu.dbke.service.org;
 
-import com.alibaba.dubbo.config.annotation.Service;
+
 import edu.dbke.mapper.org.UserMapper;
 import edu.dbke.model.org.User;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import java.util.List;
 
 /**

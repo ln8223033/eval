@@ -26,10 +26,6 @@ public class Files  {
     //同时可以根据这段路径来获知此文件所属分类，这在进行权限判断时会乃到
     private String savePath;
 
-    public Files(){
-
-    }
-
     public Integer getId() {
         return id;
     }

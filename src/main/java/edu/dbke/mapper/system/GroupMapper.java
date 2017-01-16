@@ -2,11 +2,12 @@ package edu.dbke.mapper.system;
 
 
 import edu.dbke.model.system.Group;
+import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public interface GroupMapper extends Mapper<Group>{
 	public List<Group> findNodeById(String id);
 	public Group findByName(String name);

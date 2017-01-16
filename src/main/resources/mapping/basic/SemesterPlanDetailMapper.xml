@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dbke.mapper.basic.SemesterPlanDetailMapper">
+  <resultMap id="BaseResultMap" type="edu.dbke.model.basic.SemesterPlanDetail">
+
+    <id column=" id" jdbcType="INTEGER" property="id" />
+    <result column="SyllabusId" jdbcType="INTEGER" property="syllabus" />
+    <result column="InChargeOfDeptId" jdbcType="INTEGER" property="department" />
+  </resultMap>
+</mapper>

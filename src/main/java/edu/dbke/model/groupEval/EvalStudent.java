@@ -15,11 +15,11 @@ public class EvalStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
+
+    @Column(name = "student_id")
     private Student student;
-    @ManyToOne
-    @JoinColumn(name = "eval_group_id", nullable = false)
+
+    @Column(name = "eval_group_id")
     private EvalGroup evalGroup;//所属分组
 
     @Column(name = "is_leader")

@@ -14,16 +14,16 @@ public class EvalCheckTask  {
     public static int unchecked = 1;
     public static int checked = 2;
 
-    @ManyToOne
-    @JoinColumn(name = "eval_student_id")
+
+    @Column(name = "eval_student_id")
     private EvalStudent evalStudents = new EvalStudent();//评分人员
 
-    @ManyToOne
-    @JoinColumn(name = "eval_group_id")
+
+    @Column(name = "eval_group_id")
     private EvalGroup evalGroup = new EvalGroup();//被评论组
 
-    @OneToOne
-    @JoinColumn(name = "eval_comment_id")
+
+    @Column(name = "eval_comment_id")
     private EvalComment evalComment;//评论信息
 
     private int status;//状态

@@ -16,15 +16,14 @@ public class EvalCheckItem  {
     private Integer id;
     private String detail;//得分标准详细说明
     private double score;//该项所占分数
-    @ManyToOne
-    @JoinColumn(name = "group_eval_question_id")
+
+    @Column(name = "group_eval_question_id")
     private GroupEvalQuestion groupEvalQuestion ;//项目评测题目
 
-    @ManyToOne
-    @JoinColumn(name = "parent_item_id")
+
+    @Column(name = "parent_item_id")
     private EvalCheckItem parentItem;//父标准
 
-    @OneToMany(mappedBy = "parentItem", cascade = { CascadeType.REMOVE, CascadeType.MERGE })
     private List<EvalCheckItem> childItem = new ArrayList<EvalCheckItem>();
 
     public List<EvalCheckItem> getChildItem() {

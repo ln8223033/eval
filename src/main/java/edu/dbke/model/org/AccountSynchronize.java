@@ -9,17 +9,14 @@ import java.util.Date;
  *
  */
 public class AccountSynchronize {
-	private Integer id ;
+	private String id ;
 	  
 	private Date updateSuccessTime = null ;//账号更新成功时间
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
+
 	
 	public Date getUpdateSuccessTime() {
 		return updateSuccessTime;

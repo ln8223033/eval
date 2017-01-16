@@ -20,10 +20,7 @@ public class Teacher {
     @Column(name = "Name")
     private String name;//教师姓名
 
-
     private List<TeachingClass> teachingClasses = new ArrayList<TeachingClass>();//教学班
-    @Transient
-    private TeachingClass curTeachingClass;//当前教学班
 
     public Integer getId() {
         return id;
@@ -49,11 +46,4 @@ public class Teacher {
         this.teachingClasses = teachingClasses;
     }
 
-    public TeachingClass getCurTeachingClass() {
-        return curTeachingClass;
-    }
-
-    public void setCurTeachingClass(TeachingClass curTeachingClass) {
-        this.curTeachingClass = curTeachingClass;
-    }
 }

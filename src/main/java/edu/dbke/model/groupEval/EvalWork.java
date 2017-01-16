@@ -16,15 +16,13 @@ public class EvalWork  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "eval_group_id")
+
+    @Column(name = "eval_group_id")
     private EvalGroup evalGroup;// 上传作业的组
-    @OneToOne
-    @JoinColumn(name = "files_id")
+
+    @Column(name = "files_id")
     private Files files;// 作业实体
 
-    @ManyToMany
-    @JoinTable(name = "eval_student_download", joinColumns = { @JoinColumn(name = "eval_work_id") }, inverseJoinColumns = { @JoinColumn(name = "eval_studnet_id") })
     private Set<EvalStudent> evalStudent = new HashSet<EvalStudent>();
 
     public Integer getId() {

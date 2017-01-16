@@ -16,13 +16,13 @@ public class EvalAttachment   {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "group_eval_question_id")
+
+    @Column(name = "group_eval_question_id")
     private GroupEvalQuestion groupEvalQuestion ;//对应的评测题目
 
-    @OneToOne
-    @JoinColumn(name = "files_id")
-    private Files files = new Files();//本题所对应的附件
+
+    @Column(name = "files_id")
+    private Files files ;//本题所对应的附件
 
     public Integer getId() {
         return id;

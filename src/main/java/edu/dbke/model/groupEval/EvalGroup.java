@@ -17,8 +17,8 @@ public class EvalGroup {
     public static int checked = 2;
     public static int checking = 3;
 
-    @ManyToOne
-    @JoinColumn(name = "group_eval_id")
+
+    @Column(name = "group_eval_id")
     private GroupEval groupEval;//所属题目
     @Column(name = "group_name")
     private String groupName;//分组名字，也称本组项目名字
@@ -32,16 +32,13 @@ public class EvalGroup {
     @Column(name = "teacher_perscent")
     private Double teacherPerscent = 0.0;//教师打分所占比例，默认为0
     private int status;//状态
-    @OneToMany(mappedBy = "eval_group", cascade = CascadeType.PERSIST)
+
     private List<EvalStudent> grouper = new ArrayList<EvalStudent>();//组员
 
-    @OneToMany(mappedBy = "eval_group", cascade = CascadeType.PERSIST)
     private List<EvalWork> evalWork = new ArrayList<EvalWork>();//作业
 
-    @OneToMany(mappedBy = "eval_group")
     private List<EvalCheckTask> evalCheckTasks = new ArrayList<EvalCheckTask>();
 
-    @OneToMany(mappedBy = "eval_group")
     private List<EvalComment> comments = new ArrayList<EvalComment>();
     @Transient
     private String leader;//组长

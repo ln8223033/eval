@@ -58,21 +58,18 @@ public class GroupEval  {
     private boolean anonymousComment;//是否是匿名评论
     @Column(name = "assign_state")
     private int assignState;//是否已经分组
-    @ManyToOne
-    @JoinColumn(name = "group_eval_question_id")
+
+    @Column(name = "group_eval_question_id")
     private GroupEvalQuestion groupEvalQuestion; //该次评测试用的评测题目
 
-    @ManyToOne
-    @JoinColumn(name = "teaching_class_id", nullable = false)
+
+    @Column(name = "teaching_class_id")
     private TeachingClass teachingClass;//教学班级
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+
+    @Column(name = "owner_id", nullable = false)
     private Teacher owner;//出题人
 
-    //使用了该题目的分组
-    @OneToMany(mappedBy = "eval")
-    @OrderBy("groupNum asc")
     private List<EvalGroup> evalGroups = new ArrayList<EvalGroup>();
 
     public Integer getId() {
