@@ -36,13 +36,10 @@
 		select id, username from t_user where username = #{name}
 	</select>
 	
-	<insert id="insert" parameterType="User">
+	<insert id="insertEx" parameterType="User">
 		INSERT INTO t_user(username, password) VALUES(#{username},#{password})
 	</insert>
 	<delete id="deleteById" parameterType="int">
-		delete from t_user where id = #{id}
-	</delete>
-	<delete id="deleteByExample" parameterType="int">
 		delete from t_user where id = #{id}
 	</delete>
 	<update id="update" parameterType="User">

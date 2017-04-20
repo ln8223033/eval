@@ -2,27 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dbke.mapper.groupEval.GroupEvalMapper">
     <resultMap id="BaseResultMap" type="edu.dbke.model.groupEval.GroupEval">
-
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="anonymous_comment" jdbcType="BIT" property="anonymousComment"/>
-        <result column="auto_publish" jdbcType="BIT" property="autoPublish"/>
-        <result column="bs_witch" jdbcType="BIT" property="bsWitch"/>
-        <result column="upload _time" jdbcType="TIMESTAMP" property="uploadTime"/>
-        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
-        <result column="group_method" jdbcType="INTEGER" property="groupMethod"/>
-        <result column="group_size" jdbcType="INTEGER" property="groupSize"/>
-        <result column="multi_comment" jdbcType="BIT" property="multiComment"/>
-        <result column="eval_title" jdbcType="VARCHAR" property="evalTitle"/>
-        <result column="publish_result" jdbcType="BIT" property="publishResult"/>
-        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
-        <result column="owner_id" jdbcType="INTEGER" property="ownerId"/>
-        <result column="teaching_class_id" jdbcType="INTEGER" property="teachingClassId"/>
-        <result column="group_eval_question_id" jdbcType="INTEGER" property="groupEvalQuestionId"/>
-        <result column="eval_detail" jdbcType="VARCHAR" property="evalDetail"/>
-        <result column="group_time" jdbcType="TIMESTAMP" property="groupTime"/>
-        <result column="check_task_group_count" jdbcType="INTEGER" property="checkTaskGroupCount"/>
-        <result column="assign_state" jdbcType="INTEGER" property="assignState"/>
-        <result column="status" jdbcType="INTEGER" property="status"/>
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="anonymous_comment" jdbcType="BIT" property="anonymousComment" />
+        <result column="auto_publish" jdbcType="BIT" property="autoPublish" />
+        <result column="bs_witch" jdbcType="BIT" property="bsWitch" />
+        <result column="upload _time" jdbcType="TIMESTAMP" property="uploadTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+        <result column="group_method" jdbcType="INTEGER" property="groupMethod" />
+        <result column="group_size" jdbcType="INTEGER" property="groupSize" />
+        <result column="multi_comment" jdbcType="BIT" property="multiComment" />
+        <result column="eval_title" jdbcType="VARCHAR" property="evalTitle" />
+        <result column="publish_result" jdbcType="BIT" property="publishResult" />
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+        <result column="teaching_class_id" jdbcType="INTEGER" property="teachingClassId" />
+        <result column="group_eval_question_id" jdbcType="INTEGER" property="groupEvalQuestionId" />
+        <result column="eval_detail" jdbcType="VARCHAR" property="evalDetail" />
+        <result column="group_time" jdbcType="TIMESTAMP" property="groupTime" />
+        <result column="check_task_group_count" jdbcType="INTEGER" property="checkTaskGroupCount" />
+        <result column="assign_state" jdbcType="INTEGER" property="assignState" />
+        <result column="status" jdbcType="INTEGER" property="status" />
     </resultMap>
 
     <update id="BatchUpdate"  parameterType="java.util.List">

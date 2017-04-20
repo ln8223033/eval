@@ -2,12 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dbke.mapper.groupEval.EvalCheckItemMapper">
     <resultMap id="BaseResultMap" type="edu.dbke.model.groupEval.EvalCheckItem">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="detail" jdbcType="VARCHAR" property="detail"/>
-        <result column="score" jdbcType="REAL" property="score"/>
-        <result column="parent_item_id" jdbcType="INTEGER" property="parentItemId"/>
-        <result column="group_eval_question_id" jdbcType="INTEGER" property="groupEvalQuestionId"/>
+        <id column="id"  property="id"/>
+        <result column="detail"  property="detail"/>
+        <result column="score"  property="score"/>
+        <result column="group_eval_question_id"  property="groupEvalQuestionId"/>
+        <result column="parent_item_id" property="parentItemId"/>
+        <association property="parentItem" javaType="edu.dbke.model.groupEval.EvalCheckItem"  column="parent_item_id" select="selectParent" />
+        <collection property="childItem" column="id" ofType="edu.dbke.model.groupEval.EvalCheckItem"   javaType="java.util.ArrayList" select="selectChildren" />
     </resultMap>
+
+    <select id="selectParent"  resultMap="BaseResultMap">
+        select * from eval_check_item  where id=#{id}
+    </select>
+    <select id="selectChildren" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select * from eval_check_item where id=#{parent_item_id}
+    </select>
     <!-- 查询某个小组该子检查项的所有人得评分-->
     <select id="getChildItemQuery"  resultType="float">
         select eci.id,esi.score from eval_group eg,eval_check_item eci,eval_score_item esi,eval_check_item eci_p,eval_comment ec where

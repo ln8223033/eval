@@ -3,8 +3,12 @@
 <mapper namespace="edu.dbke.mapper.groupEval.EvalAttachmentMapper">
   <resultMap id="BaseResultMap" type="edu.dbke.model.groupEval.EvalAttachment">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="files_id" jdbcType="INTEGER" property="files" />
-    <result column="group_eval_question_id" jdbcType="INTEGER" property="groupEvalQuestion" />
+    <association property="files" javaType="Files">
+      <id column="Id" property="id" />
+    </association>
+    <association property="groupEvalQuestion" javaType="GroupEvalQuestion">
+      <id column="Id" property="id" />
+    </association>
   </resultMap>
 
   <!-- 批量删除-->

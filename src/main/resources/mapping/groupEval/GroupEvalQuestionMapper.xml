@@ -9,8 +9,8 @@
   <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
   <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   <result column="status" jdbcType="BIT" property="status" />
-  <result column="isShare" jdbcType="BIT" property="isshare" />
-  <result column="course_id" jdbcType="INTEGER" property="courseId" />
+  <result column="is_share" jdbcType="BIT" property="isShare" />
+  <result column="course_group_id" jdbcType="INTEGER" property="courseGroupId" />
   <result column="previous_question_id" jdbcType="INTEGER" property="previousQuestionId" />
   <result column="root_question_id" jdbcType="INTEGER" property="rootQuestionId" />
 </resultMap>
