@@ -1,59 +1,72 @@
 package edu.dbke.model.groupEval;
 
-import edu.dbke.model.files.Files;
-
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
-/**
- *评测作业
- * Created by hp on 2016/12/12.
- */
 @Table(name = "eval_work")
-public class EvalWork  {
+public class EvalWork {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "eval_group_id")
-    private EvalGroup evalGroup;// 上传作业的组
-
+    /**
+     * 作业实体
+     */
     @Column(name = "files_id")
-    private Files files;// 作业实体
+    private Integer filesId;
 
-    private Set<EvalStudent> evalStudent = new HashSet<EvalStudent>();
+    /**
+     * 上传作业的组
+     */
+    @Column(name = "eval_group_id")
+    private Integer evalGroupId;
 
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public EvalGroup getEvalGroup() {
-        return evalGroup;
+    /**
+     * 获取作业实体
+     *
+     * @return files_id - 作业实体
+     */
+    public Integer getFilesId() {
+        return filesId;
     }
 
-    public void setEvalGroup(EvalGroup evalGroup) {
-        this.evalGroup = evalGroup;
+    /**
+     * 设置作业实体
+     *
+     * @param filesId 作业实体
+     */
+    public void setFilesId(Integer filesId) {
+        this.filesId = filesId;
     }
 
-    public Files getFiles() {
-        return files;
+    /**
+     * 获取上传作业的组
+     *
+     * @return eval_group_id - 上传作业的组
+     */
+    public Integer getEvalGroupId() {
+        return evalGroupId;
     }
 
-    public void setFiles(Files files) {
-        this.files = files;
-    }
-
-    public Set<EvalStudent> getEvalStudent() {
-        return evalStudent;
-    }
-
-    public void setEvalStudent(Set<EvalStudent> evalStudent) {
-        this.evalStudent = evalStudent;
+    /**
+     * 设置上传作业的组
+     *
+     * @param evalGroupId 上传作业的组
+     */
+    public void setEvalGroupId(Integer evalGroupId) {
+        this.evalGroupId = evalGroupId;
     }
 }

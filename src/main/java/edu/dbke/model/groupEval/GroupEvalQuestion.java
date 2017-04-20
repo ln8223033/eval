@@ -1,156 +1,258 @@
 package edu.dbke.model.groupEval;
 
-
-
-import edu.dbke.model.basic.CourseGroup;
-import edu.dbke.model.basic.Teacher;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 群体评测题
- * Created by hp on 2016/12/11.
- */
 @Table(name = "group_eval_question")
-public class GroupEvalQuestion  {
+public class GroupEvalQuestion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static int SHARE = 1;
-    public static int UNSHARE = 0;
+
     public static int DELETED = 1;
     public static int UNDELETED = 0;
-    private String title;//题目的名字
+
+    public static int SHARE = 1;
+    public static int UNSHARE = 0;
+    /**
+     * 题目
+     */
+    private String title;
+
+    /**
+     * 题目的详细内容
+     */
     @Column(name = "title_detail")
-    private String titleDetail;//题目的详细内容
+    private String titleDetail;
 
-    @Column(name = "owner_id", nullable = false)
-    private Teacher owner;//出题人
+    /**
+     * 出题人
+     */
+    @Column(name = "owner_id")
+    private Integer ownerId;
+
+    /**
+     * 出题时间
+     */
     @Column(name = "create_time")
-    private Date createTime;//出题时间
+    private Date createTime;
+
+    /**
+     * 状态，0为删除，1为未删除
+     */
+    private int status;
+
+    /**
+     * 是否分享，1为分享
+     */
     @Column(name = "is_share")
-    private int isShare;//是否共享
+    private int isShare;
 
-    @Column(name = "course_group_id")
-    private CourseGroup courseGroup;//对应的课程
-    private int status = 0;//题目状态（删除，未删除）
+    /**
+     * 所属课程组id
+     */
+    @Column(name = " course_group_id")
+    private Integer  courseGroupId;
 
-    private List<EvalCheckItem> evalCheckItems = new ArrayList<EvalCheckItem>();//该题下的得分项
-
-    private List<EvalAttachment> attachment = new ArrayList<EvalAttachment>();//附件
-
-    //版本控制
-
+    /**
+     * 此题的上一个版本
+     */
     @Column(name = "previous_question_id")
-    private GroupEvalQuestion previousQuestion;//此题的上一个版本
+    private Integer previousQuestionId;
 
-
+    /**
+     * 根题目，此题的最原始版本
+     */
     @Column(name = "root_question_id")
-    private GroupEvalQuestion rootQuestion;//根题目，此题的最原始版本
+    private Integer rootQuestionId;
 
+    /**
+     * @return id
+     */
+    @Transient
+    private List<EvalAttachment> evalAttachments =new ArrayList<EvalAttachment>();
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * 获取题目
+     *
+     * @return title - 题目
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * 设置题目
+     *
+     * @param title 题目
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * 获取题目的详细内容
+     *
+     * @return title_detail - 题目的详细内容
+     */
     public String getTitleDetail() {
         return titleDetail;
     }
 
+    /**
+     * 设置题目的详细内容
+     *
+     * @param titleDetail 题目的详细内容
+     */
     public void setTitleDetail(String titleDetail) {
         this.titleDetail = titleDetail;
     }
 
-    public Teacher getOwner() {
-        return owner;
+    /**
+     * 获取出题人
+     *
+     * @return owner_id - 出题人
+     */
+    public Integer getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(Teacher owner) {
-        this.owner = owner;
+    /**
+     * 设置出题人
+     *
+     * @param ownerId 出题人
+     */
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
+    /**
+     * 获取出题时间
+     *
+     * @return create_time - 出题时间
+     */
     public Date getCreateTime() {
         return createTime;
     }
 
+    /**
+     * 设置出题时间
+     *
+     * @param createTime 出题时间
+     */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public int getIsShare() {
-        return isShare;
-    }
-    public String getIsShareDTO(){
-        if( this.getIsShare() != GroupEvalQuestion.SHARE){
-            return "<a href=\"javascript:void(0)\" onclick=\"isShare('" + id + "')\">共享</a>";
-        }else{
-            return "<a href=\"javascript:void(0)\" onclick=\"isShare('" + id + "')\">取消共享</a>";
-        }
-    }
-
-    public void setIsShare(int isShare) {
-        this.isShare = isShare;
-    }
-
-    public CourseGroup getCourseGroup() {
-        return courseGroup;
-    }
-
-    public void setCourseGroup(CourseGroup courseGroup) {
-        this.courseGroup = courseGroup;
-    }
-
+    /**
+     * 获取状态，0为删除，1为未删除
+     *
+     * @return status - 状态，0为删除，1为未删除
+     */
     public int getStatus() {
         return status;
     }
 
+    /**
+     * 设置状态，0为删除，1为未删除
+     *
+     * @param status 状态，0为删除，1为未删除
+     */
     public void setStatus(int status) {
         this.status = status;
     }
 
-    public GroupEvalQuestion getPreviousQuestion() {
-        return previousQuestion;
+    /**
+     * 获取是否分享，1为分享
+     *
+     * @return isShare - 是否分享，1为分享
+     */
+    public int getIsshare() {
+        return isShare;
     }
 
-    public void setPreviousQuestion(GroupEvalQuestion previousQuestion) {
-        this.previousQuestion = previousQuestion;
+    /**
+     * 设置是否分享，1为分享
+     *
+     * @param isshare 是否分享，1为分享
+     */
+    public void setIsshare(int isshare) {
+        this.isShare = isshare;
     }
 
-    public GroupEvalQuestion getRootQuestion() {
-        return rootQuestion;
+
+
+    /**
+     * 获取所属课程id
+     *
+     * @return course_id - 所属课程id
+     */
+    public Integer getCourseGroupId() {
+        return courseGroupId;
     }
 
-    public void setRootQuestion(GroupEvalQuestion rootQuestion) {
-        this.rootQuestion = rootQuestion;
+    /**
+     * 设置所属课程id
+     *
+     * @param courseGroupId 所属课程id
+     */
+    public void setCourseGroupId(Integer courseGroupId) {
+        this.courseGroupId = courseGroupId;
     }
 
-    public List<EvalCheckItem> getEvalCheckItems() {
-        return evalCheckItems;
+    /**
+     * 获取此题的上一个版本
+     *
+     * @return previous_question_id - 此题的上一个版本
+     */
+    public Integer getPreviousQuestionId() {
+        return previousQuestionId;
     }
 
-    public void setEvalCheckItems(List<EvalCheckItem> evalCheckItems) {
-        this.evalCheckItems = evalCheckItems;
+    /**
+     * 设置此题的上一个版本
+     *
+     * @param previousQuestionId 此题的上一个版本
+     */
+    public void setPreviousQuestionId(Integer previousQuestionId) {
+        this.previousQuestionId = previousQuestionId;
     }
 
-    public List<EvalAttachment> getAttachment() {
-        return attachment;
+    /**
+     * 获取根题目，此题的最原始版本
+     *
+     * @return root_question_id - 根题目，此题的最原始版本
+     */
+    public Integer getRootQuestionId() {
+        return rootQuestionId;
     }
 
-    public void setAttachment(List<EvalAttachment> attachment) {
-        this.attachment = attachment;
+    /**
+     * 设置根题目，此题的最原始版本
+     *
+     * @param rootQuestionId 根题目，此题的最原始版本
+     */
+    public void setRootQuestionId(Integer rootQuestionId) {
+        this.rootQuestionId = rootQuestionId;
+    }
+
+    public List<EvalAttachment> getEvalAttachments() {
+        return evalAttachments;
+    }
+
+    public void setEvalAttachments(List<EvalAttachment> evalAttachments) {
+        this.evalAttachments = evalAttachments;
     }
 }

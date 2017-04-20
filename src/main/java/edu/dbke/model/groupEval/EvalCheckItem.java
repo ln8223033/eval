@@ -1,76 +1,118 @@
 package edu.dbke.model.groupEval;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * 群体评测题的得分项
- * Created by hp on 2016/12/11.
- */
-@Entity
 @Table(name = "eval_check_item")
-public class EvalCheckItem  {
+public class EvalCheckItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String detail;//得分标准详细说明
-    private double score;//该项所占分数
 
-    @Column(name = "group_eval_question_id")
-    private GroupEvalQuestion groupEvalQuestion ;//项目评测题目
+    /**
+     * 得分标准
+     */
+    private String detail;
 
+    /**
+     * 该项所占分数
+     */
+    private Float score;
 
+    /**
+     * 父标准
+     */
     @Column(name = "parent_item_id")
-    private EvalCheckItem parentItem;//父标准
+    private Integer parentItemId;
 
-    private List<EvalCheckItem> childItem = new ArrayList<EvalCheckItem>();
+    /**
+     * 评测题目id
+     */
+    @Column(name = "group_eval_question_id")
+    private Integer groupEvalQuestionId;
 
-    public List<EvalCheckItem> getChildItem() {
-        return childItem;
-    }
-
-    public void setChildItem(List<EvalCheckItem> childItem) {
-        this.childItem = childItem;
-    }
-
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * 获取得分标准
+     *
+     * @return detail - 得分标准
+     */
     public String getDetail() {
         return detail;
     }
 
+    /**
+     * 设置得分标准
+     *
+     * @param detail 得分标准
+     */
     public void setDetail(String detail) {
         this.detail = detail;
     }
 
-    public double getScore() {
+    /**
+     * 获取该项所占分数
+     *
+     * @return score - 该项所占分数
+     */
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    /**
+     * 设置该项所占分数
+     *
+     * @param score 该项所占分数
+     */
+    public void setScore(Float score) {
         this.score = score;
     }
 
-    public GroupEvalQuestion getGroupEvalQuestion() {
-        return groupEvalQuestion;
+    /**
+     * 获取父标准
+     *
+     * @return parent_item_id - 父标准
+     */
+    public Integer getParentItemId() {
+        return parentItemId;
     }
 
-    public void setGroupEvalQuestion(GroupEvalQuestion groupEvalQuestion) {
-        this.groupEvalQuestion = groupEvalQuestion;
+    /**
+     * 设置父标准
+     *
+     * @param parentItemId 父标准
+     */
+    public void setParentItemId(Integer parentItemId) {
+        this.parentItemId = parentItemId;
     }
 
-    public EvalCheckItem getParentItem() {
-        return parentItem;
+    /**
+     * 获取评测题目id
+     *
+     * @return group_eval_question_id - 评测题目id
+     */
+    public Integer getGroupEvalQuestionId() {
+        return groupEvalQuestionId;
     }
 
-    public void setParentItem(EvalCheckItem parentItem) {
-        this.parentItem = parentItem;
+    /**
+     * 设置评测题目id
+     *
+     * @param groupEvalQuestionId 评测题目id
+     */
+    public void setGroupEvalQuestionId(Integer groupEvalQuestionId) {
+        this.groupEvalQuestionId = groupEvalQuestionId;
     }
 }

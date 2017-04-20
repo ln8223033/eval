@@ -1,59 +1,96 @@
 package edu.dbke.model.groupEval;
 
-
-
-import edu.dbke.model.basic.Student;
-
 import javax.persistence.*;
 
-/**
- * 评测中的学生
- * Created by hp on 2016/12/12.
- */
 @Table(name = "eval_student")
 public class EvalStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * 评测中的学生
+     */
     @Column(name = "student_id")
-    private Student student;
+    private Integer studentId;
 
+    /**
+     * 所属的评测小组
+     */
     @Column(name = "eval_group_id")
-    private EvalGroup evalGroup;//所属分组
+    private Integer evalGroupId;
 
+    /**
+     * 是否是组长
+     */
     @Column(name = "is_leader")
-    private boolean isLeader;//组长
+    private Boolean isLeader;
 
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    /**
+     * 获取评测中的学生
+     *
+     * @return student_id - 评测中的学生
+     */
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    /**
+     * 设置评测中的学生
+     *
+     * @param studentId 评测中的学生
+     */
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
-    public EvalGroup getEvalGroup() {
-        return evalGroup;
+    /**
+     * 获取所属的评测小组
+     *
+     * @return eval_group_id - 所属的评测小组
+     */
+    public Integer getEvalGroupId() {
+        return evalGroupId;
     }
 
-    public void setEvalGroup(EvalGroup evalGroup) {
-        this.evalGroup = evalGroup;
+    /**
+     * 设置所属的评测小组
+     *
+     * @param evalGroupId 所属的评测小组
+     */
+    public void setEvalGroupId(Integer evalGroupId) {
+        this.evalGroupId = evalGroupId;
     }
 
-    public boolean isLeader() {
+    /**
+     * 获取是否是组长
+     *
+     * @return is_leader - 是否是组长
+     */
+    public Boolean getIsLeader() {
         return isLeader;
     }
 
-    public void setLeader(boolean leader) {
-        isLeader = leader;
+    /**
+     * 设置是否是组长
+     *
+     * @param isLeader 是否是组长
+     */
+    public void setIsLeader(Boolean isLeader) {
+        this.isLeader = isLeader;
     }
 }

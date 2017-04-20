@@ -2,54 +2,94 @@ package edu.dbke.model.groupEval;
 
 import javax.persistence.*;
 
-/**
- * 每项的得分
- * Created by hp on 2016/12/12.
- */
 @Table(name = "eval_score_item")
-public class EvalScoreItem  {
+public class EvalScoreItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * 被打分项
+     */
     @Column(name = "eval_check_item_id")
-    private EvalCheckItem evalCheckItem;//被打分项
+    private Integer evalCheckItemId;
 
+    /**
+     * 得分
+     */
+    private Float score;
 
+    /**
+     * 所属评论
+     */
     @Column(name = "eval_comment_id")
-    private EvalComment evalComment;//所属评论
+    private Integer evalCommentId;
 
-    private Double score;//得分
-
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public EvalCheckItem getEvalCheckItem() {
-        return evalCheckItem;
+    /**
+     * 获取被打分项
+     *
+     * @return eval_check_item_id - 被打分项
+     */
+    public Integer getEvalCheckItemId() {
+        return evalCheckItemId;
     }
 
-    public void setEvalCheckItem(EvalCheckItem evalCheckItem) {
-        this.evalCheckItem = evalCheckItem;
+    /**
+     * 设置被打分项
+     *
+     * @param evalCheckItemId 被打分项
+     */
+    public void setEvalCheckItemId(Integer evalCheckItemId) {
+        this.evalCheckItemId = evalCheckItemId;
     }
 
-    public EvalComment getEvalComment() {
-        return evalComment;
-    }
-
-    public void setEvalComment(EvalComment evalComment) {
-        this.evalComment = evalComment;
-    }
-
-    public Double getScore() {
+    /**
+     * 获取得分
+     *
+     * @return score - 得分
+     */
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    /**
+     * 设置得分
+     *
+     * @param score 得分
+     */
+    public void setScore(Float score) {
         this.score = score;
+    }
+
+    /**
+     * 获取所属评论
+     *
+     * @return eval_comment_id - 所属评论
+     */
+    public Integer getEvalCommentId() {
+        return evalCommentId;
+    }
+
+    /**
+     * 设置所属评论
+     *
+     * @param evalCommentId 所属评论
+     */
+    public void setEvalCommentId(Integer evalCommentId) {
+        this.evalCommentId = evalCommentId;
     }
 }

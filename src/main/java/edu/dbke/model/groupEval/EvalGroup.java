@@ -1,244 +1,214 @@
 package edu.dbke.model.groupEval;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * 群体评测的分组
- * Created by hp on 2016/12/12.
- */
-@Table(name = "eval_comment_reply")
+@Table(name = "eval_group")
 public class EvalGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static int unchecked = 1;
-    public static int checked = 2;
-    public static int checking = 3;
 
-
+    /**
+     * 群体评测
+     */
     @Column(name = "group_eval_id")
-    private GroupEval groupEval;//所属题目
-    @Column(name = "group_name")
-    private String groupName;//分组名字，也称本组项目名字
+    private Integer groupEvalId;
+
+    /**
+     * 小组编号
+     */
     @Column(name = "group_num")
-    private Integer groupNum;//组号，从1开始
-    private Double score;//得分,所有成员的基础分，个人成员的分在些基础上进行加减
+    private Integer groupNum;
+
+    /**
+     * 得分
+     */
+    private Float score;
+
+    /**
+     * 组名
+     */
+    @Column(name = "group_name")
+    private String groupName;
+
+    /**
+     * 是否评论的状态
+     */
+    private Integer status;
+
+    /**
+     * 老师打的分
+     */
     @Column(name = "teacher_score")
-    private Double teacherScore;//教师打的分
+    private Float teacherScore;
+
+    /**
+     * 学生打的分
+     */
     @Column(name = "student_score")
-    private Double studentScore;//学生打的分
+    private Float studentScore;
+
+    /**
+     * 教师打分占得比例
+     */
     @Column(name = "teacher_perscent")
-    private Double teacherPerscent = 0.0;//教师打分所占比例，默认为0
-    private int status;//状态
+    private Float teacherPerscent;
 
-    private List<EvalStudent> grouper = new ArrayList<EvalStudent>();//组员
-
-    private List<EvalWork> evalWork = new ArrayList<EvalWork>();//作业
-
-    private List<EvalCheckTask> evalCheckTasks = new ArrayList<EvalCheckTask>();
-
-    private List<EvalComment> comments = new ArrayList<EvalComment>();
-    @Transient
-    private String leader;//组长
-    @Transient
-    private String teamer;//组员
-    @Transient
-    private String statusDTO;//状态
-    @Transient
-    private String leaderNo ; //组长的学号
-    @Transient
-    private String statusToString;//以中文显示的状态
-    @Transient
-    private double givenScore;//所评的分值
-    @Transient
-    private String groupId;//隐藏的被评论组的Id
-
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public GroupEval getGroupEval() {
-        return groupEval;
+    /**
+     * 获取群体评测
+     *
+     * @return group_eval_id - 群体评测
+     */
+    public Integer getGroupEvalId() {
+        return groupEvalId;
     }
 
-    public void setGroupEval(GroupEval groupEval) {
-        this.groupEval = groupEval;
+    /**
+     * 设置群体评测
+     *
+     * @param groupEvalId 群体评测
+     */
+    public void setGroupEvalId(Integer groupEvalId) {
+        this.groupEvalId = groupEvalId;
     }
 
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
+    /**
+     * 获取小组编号
+     *
+     * @return group_num - 小组编号
+     */
     public Integer getGroupNum() {
         return groupNum;
     }
 
+    /**
+     * 设置小组编号
+     *
+     * @param groupNum 小组编号
+     */
     public void setGroupNum(Integer groupNum) {
         this.groupNum = groupNum;
     }
 
-    public Double getScore() {
+    /**
+     * 获取得分
+     *
+     * @return score - 得分
+     */
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(Double score) {
+    /**
+     * 设置得分
+     *
+     * @param score 得分
+     */
+    public void setScore(Float score) {
         this.score = score;
     }
 
-    public Double getTeacherScore() {
-        return teacherScore;
+    /**
+     * 获取组名
+     *
+     * @return group_name - 组名
+     */
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setTeacherScore(Double teacherScore) {
-        this.teacherScore = teacherScore;
+    /**
+     * 设置组名
+     *
+     * @param groupName 组名
+     */
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
-    public Double getStudentScore() {
-        return studentScore;
-    }
-
-    public void setStudentScore(Double studentScore) {
-        this.studentScore = studentScore;
-    }
-
-    public Double getTeacherPerscent() {
-        return teacherPerscent;
-    }
-
-    public void setTeacherPerscent(Double teacherPerscent) {
-        this.teacherPerscent = teacherPerscent;
-    }
-
-    public int getStatus() {
+    /**
+     * 获取是否评论的状态
+     *
+     * @return status - 是否评论的状态
+     */
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    /**
+     * 设置是否评论的状态
+     *
+     * @param status 是否评论的状态
+     */
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public List<EvalStudent> getGrouper() {
-        return grouper;
+    /**
+     * 获取老师打的分
+     *
+     * @return teacher_score - 老师打的分
+     */
+    public Float getTeacherScore() {
+        return teacherScore;
     }
 
-    public void setGrouper(List<EvalStudent> grouper) {
-        this.grouper = grouper;
+    /**
+     * 设置老师打的分
+     *
+     * @param teacherScore 老师打的分
+     */
+    public void setTeacherScore(Float teacherScore) {
+        this.teacherScore = teacherScore;
     }
 
-    public List<EvalWork> getEvalWork() {
-        return evalWork;
+    /**
+     * 获取学生打的分
+     *
+     * @return student_score - 学生打的分
+     */
+    public Float getStudentScore() {
+        return studentScore;
     }
 
-    public void setEvalWork(List<EvalWork> evalWork) {
-        this.evalWork = evalWork;
+    /**
+     * 设置学生打的分
+     *
+     * @param studentScore 学生打的分
+     */
+    public void setStudentScore(Float studentScore) {
+        this.studentScore = studentScore;
     }
 
-    public List<EvalCheckTask> getEvalCheckTasks() {
-        return evalCheckTasks;
+    /**
+     * 获取教师打分占得比例
+     *
+     * @return teacher_perscent - 教师打分占得比例
+     */
+    public Float getTeacherPerscent() {
+        return teacherPerscent;
     }
 
-    public void setEvalCheckTasks(List<EvalCheckTask> evalCheckTasks) {
-        this.evalCheckTasks = evalCheckTasks;
-    }
-
-    public List<EvalComment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<EvalComment> comments) {
-        this.comments = comments;
-    }
-
-    public String getLeader() {
-        for (EvalStudent evalStu : grouper) {
-            if (evalStu.isLeader()) {
-                return evalStu.getStudent().getName();
-            }
-        }
-        return "";
-    }
-
-    public void setLeader(String leader) {
-        this.leader = leader;
-    }
-
-    public String getTeamer() {
-        StringBuffer sb = new StringBuffer();
-        for (EvalStudent evalStu : grouper) {
-            if (!evalStu.isLeader()) {
-                sb.append(evalStu.getStudent().getName() + ",");
-            }
-        }
-        if (-1 != sb.lastIndexOf(",")) {
-            sb.deleteCharAt(sb.lastIndexOf(","));
-        }
-        return sb.toString();
-    }
-
-
-    public void setTeamer(String teamer) {
-        this.teamer = teamer;
-    }
-
-    public String getStatusDTO() {
-        if (status == checked) {
-            return "已评";
-        } else if (status == unchecked) {
-            return "未评";
-        } else if (status == checking) {
-            return "评论中";
-        }
-        return statusDTO;
-    }
-
-    public void setStatusDTO(String statusDTO) {
-        this.statusDTO = statusDTO;
-    }
-
-    public String getLeaderNo() {
-        for (EvalStudent evalStu : grouper) {
-            if (evalStu.isLeader()) {
-                return evalStu.getStudent().getStudentNo();
-            }
-        }
-        return "";
-    }
-
-    public void setLeaderNo(String leaderNo) {
-        this.leaderNo = leaderNo;
-    }
-
-    public String getStatusToString() {
-        return statusToString;
-    }
-
-    public void setStatusToString(String statusToString) {
-        this.statusToString = statusToString;
-    }
-
-    public double getGivenScore() {
-        return givenScore;
-    }
-
-    public void setGivenScore(double givenScore) {
-        this.givenScore = givenScore;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    /**
+     * 设置教师打分占得比例
+     *
+     * @param teacherPerscent 教师打分占得比例
+     */
+    public void setTeacherPerscent(Float teacherPerscent) {
+        this.teacherPerscent = teacherPerscent;
     }
 }

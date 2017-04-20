@@ -2,156 +2,118 @@ package edu.dbke.model.groupEval;
 
 import javax.persistence.*;
 
-/**
- * 评分任务分组
- * Created by hp on 2016/12/12.
- */
 @Table(name = "eval_check_task")
-public class EvalCheckTask  {
+public class EvalCheckTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static int unchecked = 1;
-    public static int checked = 2;
 
-
-    @Column(name = "eval_student_id")
-    private EvalStudent evalStudents = new EvalStudent();//评分人员
-
-
+    /**
+     * 被评论组
+     */
     @Column(name = "eval_group_id")
-    private EvalGroup evalGroup = new EvalGroup();//被评论组
+    private Integer evalGroupId;
 
+    /**
+     * 状态
+     */
+    private Integer status;
 
+    /**
+     * 评论信息
+     */
     @Column(name = "eval_comment_id")
-    private EvalComment evalComment;//评论信息
+    private Integer evalCommentId;
 
-    private int status;//状态
-    @Transient
-    private String groupNum;//待评论组的编号
-    @Transient
-    private String leader;//待评论组的组长
-    @Transient
-    private String teamer;//组员
-    @Transient
-    private int evalWorks;//作业数
-    @Transient
-    private String stateToString;//以中文显示的状态
-    @Transient
-    private double givenScore;//所评的分值
-    @Transient
-    private String groupId;//隐藏的被评论组的Id
+    /**
+     * 评分人员
+     */
+    @Column(name = "eval_student")
+    private Integer evalStudent;
 
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public EvalStudent getEvalStudents() {
-        return evalStudents;
+    /**
+     * 获取被评论组
+     *
+     * @return eval_group_id - 被评论组
+     */
+    public Integer getEvalGroupId() {
+        return evalGroupId;
     }
 
-    public void setEvalStudents(EvalStudent evalStudents) {
-        this.evalStudents = evalStudents;
+    /**
+     * 设置被评论组
+     *
+     * @param evalGroupId 被评论组
+     */
+    public void setEvalGroupId(Integer evalGroupId) {
+        this.evalGroupId = evalGroupId;
     }
 
-    public EvalGroup getEvalGroup() {
-        return evalGroup;
-    }
-
-    public void setEvalGroup(EvalGroup evalGroup) {
-        this.evalGroup = evalGroup;
-    }
-
-    public EvalComment getEvalComment() {
-        return evalComment;
-    }
-
-    public void setEvalComment(EvalComment evalComment) {
-        this.evalComment = evalComment;
-    }
-
-    public int getStatus() {
+    /**
+     * 获取状态
+     *
+     * @return status - 状态
+     */
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    /**
+     * 设置状态
+     *
+     * @param status 状态
+     */
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getGroupNum() {
-        return groupNum;
+    /**
+     * 获取评论信息
+     *
+     * @return eval_comment_id - 评论信息
+     */
+    public Integer getEvalCommentId() {
+        return evalCommentId;
     }
 
-    public void setGroupNum(String groupNum) {
-        this.groupNum = groupNum;
+    /**
+     * 设置评论信息
+     *
+     * @param evalCommentId 评论信息
+     */
+    public void setEvalCommentId(Integer evalCommentId) {
+        this.evalCommentId = evalCommentId;
     }
 
-    public String getLeader() {
-        return leader;
+    /**
+     * 获取评分人员
+     *
+     * @return eval_student - 评分人员
+     */
+    public Integer getEvalStudent() {
+        return evalStudent;
     }
 
-    public void setLeader(String leader) {
-        this.leader = leader;
-    }
-
-    public String getTeamer() {
-        StringBuffer sb = new StringBuffer();
-        for (EvalStudent evalStu : evalGroup.getGrouper()) {
-            if (!evalStu.isLeader()) {
-                sb.append(evalStu.getStudent().getName() + ",");
-            }
-        }
-        if (-1 != sb.lastIndexOf(",")) {
-            sb.deleteCharAt(sb.lastIndexOf(","));
-        }
-        return sb.toString();
-    }
-
-    public void setTeamer(String teamer) {
-        this.teamer = teamer;
-    }
-
-    public int getEvalWorks() {
-        return evalWorks;
-    }
-
-    public void setEvalWorks(int evalWorks) {
-        this.evalWorks = evalWorks;
-    }
-
-    public String getStateToString() {
-        if (status == unchecked) {
-            return "未评";
-        } else if (status == checked) {
-            return "已评";
-        }
-        return stateToString;
-    }
-
-    public void setStateToString(String stateToString) {
-        this.stateToString = stateToString;
-    }
-
-    public double getGivenScore() {
-        if (null == evalComment) {
-            return 0;
-        }
-        return evalComment.getScore();
-    }
-
-    public void setGivenScore(double givenScore) {
-        this.givenScore = givenScore;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
+    /**
+     * 设置评分人员
+     *
+     * @param evalStudent 评分人员
+     */
+    public void setEvalStudent(Integer evalStudent) {
+        this.evalStudent = evalStudent;
     }
 }

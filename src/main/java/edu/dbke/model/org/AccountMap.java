@@ -1,18 +1,18 @@
 package edu.dbke.model.org;
 
 public class AccountMap {
-	
+
 	private String id ;
 	private String internalAccount;
 	private String externalAccount;
-	
+
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getInternalAccount() {
 		return internalAccount;
 	}

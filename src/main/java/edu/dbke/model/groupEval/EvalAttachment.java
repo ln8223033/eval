@@ -1,53 +1,71 @@
 package edu.dbke.model.groupEval;
 
-import edu.dbke.model.files.Files;
-
-
 import javax.persistence.*;
 
-
-/**
- * 评测对应附件表
- * Created by hp on 2016/12/12.
- */
-
 @Table(name = "eval_attachment")
-public class EvalAttachment   {
+public class EvalAttachment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    /**
+     * 本题对应的附件
+     */
+    private Integer filesid;
+
+    /**
+     * 评测题目id
+     */
     @Column(name = "group_eval_question_id")
-    private GroupEvalQuestion groupEvalQuestion ;//对应的评测题目
+    private Integer groupEvalQuestionId;
 
-
-    @Column(name = "files_id")
-    private Files files ;//本题所对应的附件
-
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Files getFiles() {
-        return files;
+    /**
+     * 获取本题对应的附件
+     *
+     * @return filesid - 本题对应的附件
+     */
+    public Integer getFilesid() {
+        return filesid;
     }
 
-    public void setFiles(Files files) {
-        this.files = files;
+    /**
+     * 设置本题对应的附件
+     *
+     * @param filesid 本题对应的附件
+     */
+    public void setFilesid(Integer filesid) {
+        this.filesid = filesid;
     }
 
-    public GroupEvalQuestion getGroupEvalQuestion() {
-        return groupEvalQuestion;
+    /**
+     * 获取评测题目id
+     *
+     * @return group_eval_question_id - 评测题目id
+     */
+    public Integer getGroupEvalQuestionId() {
+        return groupEvalQuestionId;
     }
 
-    public void setGroupEvalQuestion(GroupEvalQuestion groupEvalQuestion) {
-        this.groupEvalQuestion = groupEvalQuestion;
+    /**
+     * 设置评测题目id
+     *
+     * @param groupEvalQuestionId 评测题目id
+     */
+    public void setGroupEvalQuestionId(Integer groupEvalQuestionId) {
+        this.groupEvalQuestionId = groupEvalQuestionId;
     }
 }
-
-
-

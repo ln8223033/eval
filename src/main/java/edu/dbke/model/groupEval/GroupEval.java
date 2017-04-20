@@ -1,324 +1,483 @@
 package edu.dbke.model.groupEval;
 
-
-
-
-import edu.dbke.model.basic.Teacher;
-import edu.dbke.model.basic.TeachingClass;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-/**
- * 群体评测
- * Created by hp on 2016/12/11.
- */
 @Table(name = "group_eval")
-public class GroupEval  {
+public class GroupEval {
+
+    public static final int DELETED = 1;
+    public static final int UNDELETED = 0;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    public static final int DELETED = 1;
-    public static final int UNDELETED = 0;
-    private static final long serialVersionUID = -791960602557046064L;
-    public static Integer assigned = 1;//已分配
-    public static Integer unAssigned = 0;//未分配
 
-    private Integer status;//状态: 1:已删除  0:未删除
-    @Column(name = "check_task_group_count")
-    private Integer checkTaskGroupCount = 3;//评论任务所需评论组数，默认为3组
-    @Column(name = "eval_title")
-    private String evalTitle;//评测的名字
-    @Column(columnDefinition = "CLOB")
-    private String evalDetail;//评测的详细内容
-    @Column(name = "start_time")
-    private Date startTime;//开始时间
-    @Column(name = "end_time")
-    private Date endTime;//结束时间
-    @Column(name = "upload _time")
-    private Date uploadTime;//附件(作业)上传结束时间
-    @Column(name = "group_time")
-    private Date groupTime;//分组结束时间
-    @Column(name = "group_size")
-    private int groupSize = 1;//每组人数(默认1人)
-    @Column(name = "group_method")
-    private int groupMethod;//分组方式， 0为还没设置  1为教师指定，2为学生自己分组(默认教师指定)
-    @Column(name = "bs_witch")
-    private boolean bsWitch;//评论开关
-    @Column(name = "auto_publish")
-    private boolean autoPublish;//发布开关
-    @Column(name = "multi_comment")
-    private boolean multiComment;//是否可以多次评论
-    @Column(name = "publish_result")
-    private boolean publishResult;//是否公布结果
+    /**
+     * 是否匿名评论
+     */
     @Column(name = "anonymous_comment")
-    private boolean anonymousComment;//是否是匿名评论
-    @Column(name = "assign_state")
-    private int assignState;//是否已经分组
+    private Boolean anonymousComment;
 
-    @Column(name = "group_eval_question_id")
-    private GroupEvalQuestion groupEvalQuestion; //该次评测试用的评测题目
+    /**
+     * 发布
+     */
+    @Column(name = "auto_publish")
+    private Boolean autoPublish;
 
+    /**
+     * 评论开关
+     */
+    @Column(name = "bs_witch")
+    private Boolean bsWitch;
 
+    /**
+     * 作品结束上传时间
+     */
+    @Column(name = "`upload _time`")
+    private Date uploadTime;
+
+    /**
+     * 评测结束时间
+     */
+    @Column(name = "end_time")
+    private Date endTime;
+
+    /**
+     * 分组方式,0为还没设置,1为教师指定，2为学生自己分组(默认教师指定)
+     */
+    @Column(name = "group_method")
+    private Integer groupMethod;
+
+    /**
+     * 每组人数(默认1人)
+     */
+    @Column(name = "group_size")
+    private Integer groupSize;
+
+    /**
+     * 是否可以多次评论
+     */
+    @Column(name = "multi_comment")
+    private Boolean multiComment;
+
+    /**
+     * 评测题目
+     */
+    @Column(name = "eval_title")
+    private String evalTitle;
+
+    /**
+     * 是否公布结果
+     */
+    @Column(name = "publish_result")
+    private Boolean publishResult;
+
+    /**
+     * 开始时间
+     */
+    @Column(name = "start_time")
+    private Date startTime;
+
+    /**
+     * 出题人
+     */
+    @Column(name = "owner_id")
+    private Integer ownerId;
+
+    /**
+     * 教学班级id
+     */
     @Column(name = "teaching_class_id")
-    private TeachingClass teachingClass;//教学班级
+    private Integer teachingClassId;
 
+    /**
+     * 群体评测题目id
+     */
+    @Column(name = "group_eval_question_id")
+    private Integer groupEvalQuestionId;
 
-    @Column(name = "owner_id", nullable = false)
-    private Teacher owner;//出题人
+    /**
+     * 评测的详细内容
+     */
+    @Column(name = "eval_detail")
+    private String evalDetail;
 
-    private List<EvalGroup> evalGroups = new ArrayList<EvalGroup>();
+    /**
+     * 分组结束时间
+     */
+    @Column(name = "group_time")
+    private Date groupTime;
 
+    /**
+     * 评论任务所需评论组数，默认为3组
+     */
+    @Column(name = "check_task_group_count")
+    private Integer checkTaskGroupCount;
+
+    /**
+     * 是否已分组
+     */
+    @Column(name = "assign_state")
+    private Integer assignState;
+
+    /**
+     * 状态
+     */
+    private Integer status;
+
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getStatus() {
-        return status;
+    /**
+     * 获取是否匿名评论
+     *
+     * @return anonymous_comment - 是否匿名评论
+     */
+    public Boolean getAnonymousComment() {
+        return anonymousComment;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    /**
+     * 设置是否匿名评论
+     *
+     * @param anonymousComment 是否匿名评论
+     */
+    public void setAnonymousComment(Boolean anonymousComment) {
+        this.anonymousComment = anonymousComment;
     }
 
-    public Integer getCheckTaskGroupCount() {
-        return checkTaskGroupCount;
+    /**
+     * 获取发布
+     *
+     * @return auto_publish - 发布
+     */
+    public Boolean getAutoPublish() {
+        return autoPublish;
     }
 
-    public void setCheckTaskGroupCount(Integer checkTaskGroupCount) {
-        this.checkTaskGroupCount = checkTaskGroupCount;
+    /**
+     * 设置发布
+     *
+     * @param autoPublish 发布
+     */
+    public void setAutoPublish(Boolean autoPublish) {
+        this.autoPublish = autoPublish;
     }
 
-    public String getEvalTitle() {
-        return evalTitle;
+    /**
+     * 获取评论开关
+     *
+     * @return bs_witch - 评论开关
+     */
+    public Boolean getBsWitch() {
+        return bsWitch;
     }
 
-    public void setEvalTitle(String evalTitle) {
-        this.evalTitle = evalTitle;
+    /**
+     * 设置评论开关
+     *
+     * @param bsWitch 评论开关
+     */
+    public void setBsWitch(Boolean bsWitch) {
+        this.bsWitch = bsWitch;
     }
 
-    public String getEvalDetail() {
-        GroupEvalQuestion groupEvalQuestion=new GroupEvalQuestion();
-        return groupEvalQuestion.getTitle();
-    }
-
-    public void setEvalDetail(String evalDetail) {
-        this.evalDetail = evalDetail;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
+    /**
+     * 获取作品结束上传时间
+     *
+     * @return upload _time - 作品结束上传时间
+     */
     public Date getUploadTime() {
         return uploadTime;
     }
 
+    /**
+     * 设置作品结束上传时间
+     *
+     * @param uploadTime 作品结束上传时间
+     */
     public void setUploadTime(Date uploadTime) {
         this.uploadTime = uploadTime;
     }
 
+    /**
+     * 获取评测结束时间
+     *
+     * @return end_time - 评测结束时间
+     */
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * 设置评测结束时间
+     *
+     * @param endTime 评测结束时间
+     */
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    /**
+     * 获取分组方式,0为还没设置,1为教师指定，2为学生自己分组(默认教师指定)
+     *
+     * @return group_method - 分组方式,0为还没设置,1为教师指定，2为学生自己分组(默认教师指定)
+     */
+    public Integer getGroupMethod() {
+        return groupMethod;
+    }
+
+    /**
+     * 设置分组方式,0为还没设置,1为教师指定，2为学生自己分组(默认教师指定)
+     *
+     * @param groupMethod 分组方式,0为还没设置,1为教师指定，2为学生自己分组(默认教师指定)
+     */
+    public void setGroupMethod(Integer groupMethod) {
+        this.groupMethod = groupMethod;
+    }
+
+    /**
+     * 获取每组人数(默认1人)
+     *
+     * @return group_size - 每组人数(默认1人)
+     */
+    public Integer getGroupSize() {
+        return groupSize;
+    }
+
+    /**
+     * 设置每组人数(默认1人)
+     *
+     * @param groupSize 每组人数(默认1人)
+     */
+    public void setGroupSize(Integer groupSize) {
+        this.groupSize = groupSize;
+    }
+
+    /**
+     * 获取是否可以多次评论
+     *
+     * @return multi_comment - 是否可以多次评论
+     */
+    public Boolean getMultiComment() {
+        return multiComment;
+    }
+
+    /**
+     * 设置是否可以多次评论
+     *
+     * @param multiComment 是否可以多次评论
+     */
+    public void setMultiComment(Boolean multiComment) {
+        this.multiComment = multiComment;
+    }
+
+    /**
+     * 获取评测题目
+     *
+     * @return eval_title - 评测题目
+     */
+    public String getEvalTitle() {
+        return evalTitle;
+    }
+
+    /**
+     * 设置评测题目
+     *
+     * @param evalTitle 评测题目
+     */
+    public void setEvalTitle(String evalTitle) {
+        this.evalTitle = evalTitle;
+    }
+
+    /**
+     * 获取是否公布结果
+     *
+     * @return publish_result - 是否公布结果
+     */
+    public Boolean getPublishResult() {
+        return publishResult;
+    }
+
+    /**
+     * 设置是否公布结果
+     *
+     * @param publishResult 是否公布结果
+     */
+    public void setPublishResult(Boolean publishResult) {
+        this.publishResult = publishResult;
+    }
+
+    /**
+     * 获取开始时间
+     *
+     * @return start_time - 开始时间
+     */
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * 设置开始时间
+     *
+     * @param startTime 开始时间
+     */
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     * 获取出题人
+     *
+     * @return owner_id - 出题人
+     */
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    /**
+     * 设置出题人
+     *
+     * @param ownerId 出题人
+     */
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    /**
+     * 获取教学班级id
+     *
+     * @return teaching_class_id - 教学班级id
+     */
+    public Integer getTeachingClassId() {
+        return teachingClassId;
+    }
+
+    /**
+     * 设置教学班级id
+     *
+     * @param teachingClassId 教学班级id
+     */
+    public void setTeachingClassId(Integer teachingClassId) {
+        this.teachingClassId = teachingClassId;
+    }
+
+    /**
+     * 获取群体评测题目id
+     *
+     * @return group_eval_question_id - 群体评测题目id
+     */
+    public Integer getGroupEvalQuestionId() {
+        return groupEvalQuestionId;
+    }
+
+    /**
+     * 设置群体评测题目id
+     *
+     * @param groupEvalQuestionId 群体评测题目id
+     */
+    public void setGroupEvalQuestionId(Integer groupEvalQuestionId) {
+        this.groupEvalQuestionId = groupEvalQuestionId;
+    }
+
+    /**
+     * 获取评测的详细内容
+     *
+     * @return eval_detail - 评测的详细内容
+     */
+    public String getEvalDetail() {
+        return evalDetail;
+    }
+
+    /**
+     * 设置评测的详细内容
+     *
+     * @param evalDetail 评测的详细内容
+     */
+    public void setEvalDetail(String evalDetail) {
+        this.evalDetail = evalDetail;
+    }
+
+    /**
+     * 获取分组结束时间
+     *
+     * @return group_time - 分组结束时间
+     */
     public Date getGroupTime() {
         return groupTime;
     }
 
+    /**
+     * 设置分组结束时间
+     *
+     * @param groupTime 分组结束时间
+     */
     public void setGroupTime(Date groupTime) {
         this.groupTime = groupTime;
     }
 
-    public int getGroupSize() {
-        if( groupSize == 0)
-            groupSize++ ;
-        return groupSize;
+    /**
+     * 获取评论任务所需评论组数，默认为3组
+     *
+     * @return check_task_group_count - 评论任务所需评论组数，默认为3组
+     */
+    public Integer getCheckTaskGroupCount() {
+        return checkTaskGroupCount;
     }
 
-    public void setGroupSize(int groupSize) {
-        this.groupSize = groupSize;
+    /**
+     * 设置评论任务所需评论组数，默认为3组
+     *
+     * @param checkTaskGroupCount 评论任务所需评论组数，默认为3组
+     */
+    public void setCheckTaskGroupCount(Integer checkTaskGroupCount) {
+        this.checkTaskGroupCount = checkTaskGroupCount;
     }
 
-    public int getGroupMethod() {
-        return groupMethod;
-    }
-
-    public void setGroupMethod(int groupMethod) {
-        this.groupMethod = groupMethod;
-    }
-
-    public boolean isBsWitch() {
-        return bsWitch;
-    }
-
-    public void setBsWitch(boolean bsWitch) {
-        this.bsWitch = bsWitch;
-    }
-
-    public boolean isAutoPublish() {
-        return autoPublish;
-    }
-
-    public void setAutoPublish(boolean autoPublish) {
-        this.autoPublish = autoPublish;
-    }
-
-    public boolean isMultiComment() {
-        return multiComment;
-    }
-
-    public void setMultiComment(boolean multiComment) {
-        this.multiComment = multiComment;
-    }
-
-    public boolean isPublishResult() {
-        return publishResult;
-    }
-
-    public void setPublishResult(boolean publishResult) {
-        this.publishResult = publishResult;
-    }
-
-    public boolean isAnonymousComment() {
-        return anonymousComment;
-    }
-
-    public void setAnonymousComment(boolean anonymousComment) {
-        this.anonymousComment = anonymousComment;
-    }
-
-    public int getAssignState() {
+    /**
+     * 获取是否已分组
+     *
+     * @return assign_state - 是否已分组
+     */
+    public Integer getAssignState() {
         return assignState;
     }
 
-    public void setAssignState(int assignState) {
+    /**
+     * 设置是否已分组
+     *
+     * @param assignState 是否已分组
+     */
+    public void setAssignState(Integer assignState) {
         this.assignState = assignState;
     }
 
-    public GroupEvalQuestion getGroupEvalQuestion() {
-        return groupEvalQuestion;
-    }
-
-    public void setGroupEvalQuestion(GroupEvalQuestion groupEvalQuestion) {
-        this.groupEvalQuestion = groupEvalQuestion;
-    }
-
-    public TeachingClass getTeachingClass() {
-        return teachingClass;
-    }
-
-    public void setTeachingClass(TeachingClass teachingClass) {
-        this.teachingClass = teachingClass;
-    }
-
-    public Teacher getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Teacher owner) {
-        this.owner = owner;
-    }
-
-    public List<EvalGroup> getEvalGroups() {
-        return evalGroups;
-    }
-
-    public void setEvalGroups(List<EvalGroup> evalGroups) {
-        this.evalGroups = evalGroups;
-    }
     /**
-     * 是否发布显示
+     * 获取状态
+     *
+     * @return status - 状态
      */
-    public String getPublishDTO(){
-        if( autoPublish){
-            return "<font color='green'>已发布</font>" ;
-        }else{
-            return "<font color='blue'>未发布</font>" ;
-        }
+    public Integer getStatus() {
+        return status;
     }
 
     /**
-     * 获取每组人数
+     * 设置状态
+     *
+     * @param status 状态
      */
-    public String getGroupPeopleDTO(){
-
-        if(getGroupMethod() == 0){           //教师未设置分组方式
-            return "<font color='red'>未设置</font>";
-        }else if( getGroupMethod() == 1){            //教师指定人数
-            return "教师指定(" + "每组<font color='green'>" + groupSize + "</font>人)" ;
-        }else if( getGroupMethod() == 2){
-            return "自由组合(" + "每组<font color='green'>" + groupSize + "</font>人)" ;
-        }else{
-            return "" ;
-        }
-    }
-
-    /**
-     * 评测状态提示信息
-     */
-    public String getEvalStatusDTO(){
-        Date date = Calendar.getInstance().getTime();
-        if( this.autoPublish){
-            if( date.getTime() > endTime.getTime()){   //评论已经开始
-                return "<font color='gray'>评测已结束</font>" ;
-            }else if( date.getTime() > uploadTime.getTime()){   //作品上传时间已经结束
-                return "<font color='green'>上传时间已到,评论已开始</font>" ;
-            }else if( groupTime.getTime() < date.getTime()){   //分组时间已经结束
-                return "<font color='green'>分组时间已过</font>" ;
-            }else if( date.getTime() > startTime.getTime()){   //进行中
-                return "<font color='green'>评测开始</font>" ;
-            }else if(date.getTime() < startTime.getTime()){        //未开始
-                return "<font color='blue'>未开始</font>" ;
-            }else{
-                return "无" ;
-            }
-        }else{
-            return "未发布" ;
-        }
-    }
-
-    /**
-     * 评分任务状态
-     */
-    public String getTaskStatusDTO(){
-        if( assignState == 0){
-            return "<font color='red'>未分配</font>" ;
-        }else{
-            return "<font color='green'>已分配</font>" ;
-        }
-    }
-
-    /**
-     * 成绩公布状态
-     */
-    public String getScoreStatusDTO(){
-        if( publishResult){
-            return "<font color='green'>已公布</font>" ;
-        }else{
-            return "<font color='blue'>未公布</font>" ;
-        }
-    }
-
-    /**
-     * 活动评测对应问题的题目信息
-     */
-    public String getEvalTitleDTO(){
-        return this.getGroupEvalQuestion().getTitle();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
