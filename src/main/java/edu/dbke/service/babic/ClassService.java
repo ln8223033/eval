@@ -1,7 +1,7 @@
 package edu.dbke.service.babic;
 
 
-import edu.dbke.mapper.basic.ClassesMapper;
+import edu.dbke.mapper.basic.ClassMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,9 +10,9 @@ import javax.annotation.Resource;
  * Created by hp on 2016/12/24.
  */
 @Service
-public class ClassesService {
+public class ClassService {
     @Resource
-    private ClassesMapper classesMapper;
+    private ClassMapper classMapper;
 
 }
 
