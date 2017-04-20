@@ -253,6 +253,16 @@
       <version>1.3.5</version>
     </dependency>
     <dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper</artifactId>
+    <version>3.4.2</version>
+  </dependency>
+  <dependency>
+    <groupId>com.github.jsqlparser</groupId>
+    <artifactId>jsqlparser</artifactId>
+    <version>0.9.1</version>
+  </dependency>
+    <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectjweaver.version}</version>
