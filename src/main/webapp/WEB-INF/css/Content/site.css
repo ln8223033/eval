@@ -1,0 +1,207 @@
+body {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: 'Microsoft YaHei', 'sans-serif', 'ff-tisa-web-pro-2', 'Lucida Grande', 'Hiragino Sans GB', 'Hiragino Sans GB W3';
+}
+
+html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl, dt, dd, ol, ul, li, form, table, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+html {
+        overflow-x: auto;
+}
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.left {
+    width: 210px;
+    height: 100%;
+    position: absolute;
+    background: #293038;
+}
+
+    .left h2 {
+        text-align: center;
+        border-bottom: 0px #23a4fb solid;
+        margin: 0;
+        height: 44px;
+        line-height: 44px;
+        background: #22282e;
+        display: block;
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Microsoft YaHei';
+    }
+
+.navigationTitle {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px #ddd solid;
+    margin: 0;
+    height: 45px;
+    line-height: 45px;
+    background: #efefef;
+    display: block;
+    color: #333333;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei';
+    padding-left: 20px;
+}
+
+    .navigationTitle a {
+        color: #333333;
+        text-decoration: none;
+    }
+
+.left ul {
+    margin-bottom: 75px;
+}
+
+.left dl {
+    margin: 0;
+}
+
+    .left dl dt {
+        font-weight: 400;
+        height: 45px;
+        line-height: 45px;
+        border-top: 1px #394555 solid;
+        padding: 0 15px;
+        position: relative;
+        font-size: 14px;
+        font-family: 'Microsoft YaHei';
+        color: #FFF;
+        background: #22282e;
+    }
+
+        .left dl dt i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+    .left dl dd {
+        margin: 0;
+        height: 36px;
+        line-height: 36px;
+        color: #FFF;
+    }
+
+        .left dl dd i {
+            margin-right: 6px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .left dl dd a {
+            display: block;
+            color: #FFF;
+            padding: 0 40px;
+            text-decoration: none;
+        }
+
+            .left dl dd a:hover {
+                background: #0099cc;
+                color: #FFF;
+                text-decoration: none;
+            }
+
+.file {
+    position: relative;
+    display: inline-block;
+    background: #F6F6F6;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 10px;
+    overflow: hidden;
+    color: #555;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #F2F2F2;
+        color: #555;
+        text-decoration: none;
+    }
+
+.table thead > tr > th {
+    height: 32px;
+    line-height: 32px;
+}
+
+hr.hr-dotted-blue {
+    height: 1px;
+    border: none;
+    border-top: 1px dashed #0066CC;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.editbox {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 60px;
+    padding-left:30px;
+    border: 1px #eee solid;
+    min-height: 720px;
+}
+
+    .editbox .btn {
+        width: 100px;
+        margin-right: 30px;
+    }
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+body:before {
+    background-color: #fff;
+}
+
+.modal {
+    top: 60px;
+}
+
+.newscontent {
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.tabledetail {
+    width:100%;
+}
+.tabledetail th{
+    text-align:right;
+    width:160px;
+    height:38px;
+    padding:6px 6px;
+    border:1px solid #ddd;
+    font-weight:normal;
+}
+.tabledetail td{
+    text-align:left;
+    padding:6px 6px;
+    height:38px;
+    border:1px solid #ddd;
+}
+.tabledetail img{
+    max-height:120px;
+    max-width:160px;
+}

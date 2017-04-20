@@ -67,5 +67,24 @@
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
-
+    <!-- acl config begin -->
+    <filter>
+    <filter-name>aclFilter</filter-name>
+    <filter-class>edu.dbke.web.acl.AclFilter</filter-class>
+    </filter>
+    <filter-mapping>
+    <filter-name>aclFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+    <description>sessionInit</description>
+    <display-name>sessionInit</display-name>
+    <servlet-name>sessionInit</servlet-name>
+    <servlet-class>edu.dbke.web.acl.SessionInit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>sessionInit</servlet-name>
+    <url-pattern>/servlet/sessionInit</url-pattern>
+    </servlet-mapping>
+    <!-- acl config end -->
 </web-app>

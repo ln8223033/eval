@@ -1,0 +1,112 @@
+body {
+    font-family: "黑体";
+}
+
+/*bootstrap样式重写*/
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    border-top: 2px solid #2cb44e;
+}
+
+.btnSelect, .btnSelect:focus {
+    background-color: #4bd083;
+    border-color: #2cb44e;
+    color: #fff;
+}
+
+.nav-pills > li > a:focus {
+    background-color: #49cee3;
+    color: #fff;
+}
+
+.nav-pills > li > a {
+    padding: 5px 20px 5px 20px;
+}
+
+.pagination > li > a {
+    margin-right: 5px;
+}
+
+.caret {
+    border-top: 4px solid #2cb44e;
+}
+
+input[type=radio] + .text:before {
+    border-radius: 100%;
+    font-size: 10px;
+    font-family: FontAwesome;
+    line-height: 10px;
+    height: 10px;
+    min-width: 10px;
+    color: #2cb44e;
+}
+
+.radio, .checkbox {
+    display: block;
+    min-height: 20px;
+    padding-left: 55px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    vertical-align: middle;
+}
+
+btn, .btn-default, .btn:focus, .btn-default:focus {
+    background-color: #49cee3;
+    color: #ffffff;
+}
+
+.pagination > li.active > a, .pagination > li.active > a:hover {
+    background-color: #4bd083;
+    border-color: #2cb44e;
+}
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: #49cee3;
+}
+
+/*自定义选中效果*/
+.selectedRow {
+}
+
+/*表格样式*/
+.td_option_left {
+    margin-left: 50px;
+}
+
+.td_div_style {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+.td_div_float {
+    float: left;
+    height: 30px;
+}
+
+.td_div_float_width {
+    width: 300px;
+}
+
+.td_color {
+    color: #ff6a00;
+}
+
+.td_btn_style {
+    color: #2cb44e;
+    margin-right: 20px;
+}
+
+.td_font {
+    font-size: 11px;
+}
+
+.td_final_text {
+    text-align: right;
+}
+
+
+.table td {
+    border-bottom: 2px #49cee3 dashed;
+}
