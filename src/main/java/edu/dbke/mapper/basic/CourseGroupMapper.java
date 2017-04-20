@@ -1,12 +1,11 @@
 package edu.dbke.mapper.basic;
 
-import edu.dbke.model.basic.CourseGroup;
+
+import edu.dbke.model.basic.Coursegroup;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
-/**
- * Created by hp on 2017/1/16.
- */
 @Repository
-public interface CourseGroupMapper extends Mapper<CourseGroup> {
+public interface CoursegroupMapper extends Mapper<Coursegroup> {
+
 }
