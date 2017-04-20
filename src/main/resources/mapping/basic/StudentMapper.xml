@@ -2,10 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dbke.mapper.basic.StudentMapper">
   <resultMap id="BaseResultMap" type="edu.dbke.model.basic.Student">
-
-    <id column=" Id" jdbcType="INTEGER" property="id" />
-    <result column="StudentNo" jdbcType="VARCHAR" property="studentNo" />
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Profession" jdbcType="INTEGER" property="profession" />
+    <result column="LearnYear" jdbcType="INTEGER" property="learnyear" />
+    <result column="LearnType" jdbcType="INTEGER" property="learntype" />
+    <result column="LearnLevel" jdbcType="INTEGER" property="learnlevel" />
+    <result column="LearnLong" jdbcType="INTEGER" property="learnlong" />
+    <result column="JoinDate" jdbcType="DATE" property="joindate" />
     <result column="Name" jdbcType="VARCHAR" property="name" />
-    <result column="CurrentClassId" jdbcType="INTEGER" property="currentClass" />
+    <result column="Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="IdentityNo" jdbcType="VARCHAR" property="identityno" />
+    <result column="LoginPassword" jdbcType="VARCHAR" property="loginpassword" />
+    <result column="Birthday" jdbcType="DATE" property="birthday" />
+    <result column="Photo" jdbcType="VARCHAR" property="photo" />
+    <result column="OriginPlace" jdbcType="VARCHAR" property="originplace" />
+    <result column="Nation" jdbcType="VARCHAR" property="nation" />
+    <result column="LinkPhone" jdbcType="VARCHAR" property="linkphone" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="HomeAddress" jdbcType="VARCHAR" property="homeaddress" />
+    <result column="CurrentClassId" jdbcType="INTEGER" property="currentclassid" />
+    <result column="Status" jdbcType="INTEGER" property="status" />
+    <result column="InUser" jdbcType="VARCHAR" property="inuser" />
+    <result column="InDate" jdbcType="TIMESTAMP" property="indate" />
+    <result column="LastEditUser" jdbcType="VARCHAR" property="lastedituser" />
+    <result column="LastEditDate" jdbcType="TIMESTAMP" property="lasteditdate" />
+    <result column="StudentNo" jdbcType="VARCHAR" property="studentno" />
   </resultMap>
 </mapper>
